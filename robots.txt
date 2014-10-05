@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://shironoo.github.io/sitemap.xml 
+Sitemap: http://blog.shironoo.org/sitemap.xml 
