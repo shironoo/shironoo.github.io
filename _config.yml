@@ -2,11 +2,11 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://shironoo.github.io
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
-simple_search: https://www.google.com/search
+url: http://blog.shironoo.org
+title: shironoo's Memorandum
+subtitle: Fresh hacks every day
+author: shironoo
+simple_search: https://www.google.co.jp/search
 description:
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
