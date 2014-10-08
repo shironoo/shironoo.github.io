@@ -9,7 +9,12 @@
   <meta name="author" content="shironoo">
 
   
-  <meta name="description" content=" Blog Archives Recent Posts ">
+  <meta name="description" content="DigitalOceanとは 1時間1円で借りられる格安VPSサーバです．
+今回借りた最安プラン（一ヶ月5ドル）のスペックは CPU: 1 Core
+Memory: 512MB
+Storage: 20GB SSD
+転送量: 1TB とまずまず．
+さくらVPSとAWSの中間のような機能を持っており， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +71,251 @@
       <div class="blog-index">
   
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/08/digitalocean/">自宅サーバからDigitalOceanのVPSへ引っ越した</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-08T14:06:37+09:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:06 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>DigitalOceanとは</h2>
+
+<p>1時間1円で借りられる格安VPSサーバです．<br/>
+今回借りた最安プラン（一ヶ月5ドル）のスペックは</p>
+
+<ul>
+<li>CPU: 1 Core</li>
+<li>Memory: 512MB</li>
+<li>Storage: 20GB SSD</li>
+<li>転送量: 1TB</li>
+</ul>
+
+
+<p>とまずまず．<br/>
+さくらVPSとAWSの中間のような機能を持っており，お手軽にIaaSを体感することができます．<br/>
+SSDのおかげで体感速度はなかなかのものです．</p>
+
+<h2>ベンチマーク</h2>
+
+<ul>
+<li>リージョン: シンガポール</li>
+<li>OS: CentOS 7</li>
+</ul>
+
+
+<h3>cpuinfo</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>cat /proc/cpuinfo
+</span><span class='line'>processor       : 0
+</span><span class='line'>vendor_id       : GenuineIntel
+</span><span class='line'>cpu family      : 6
+</span><span class='line'>model             : 62
+</span><span class='line'>model name        : Intel<span class="o">(</span>R<span class="o">)</span> Xeon<span class="o">(</span>R<span class="o">)</span> CPU E5-2630L v2 @ 2.40GHz
+</span><span class='line'>stepping          : 4
+</span><span class='line'>microcode         : 0x1
+</span><span class='line'>cpu MHz             : 2399.998
+</span><span class='line'>cache size          : <span class="m">4096</span> KB
+</span><span class='line'>physical id         : 0
+</span><span class='line'>siblings : 1
+</span><span class='line'>core id    : 0
+</span><span class='line'>cpu cores  : 1
+</span><span class='line'>apicid       : 0
+</span><span class='line'>initial apicid : 0
+</span><span class='line'>fpu            : yes
+</span><span class='line'>fpu_exception  : yes
+</span><span class='line'>cpuid level    : 13
+</span><span class='line'>wp             : yes
+</span><span class='line'>flags            : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl eagerfpu pni pclmulqdq vmx ssse3 cx16 pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm xsaveopt fsgsbase tsc_adjust smep erms
+</span><span class='line'>bogomips         : 4799.99
+</span><span class='line'>clflush size     : 64
+</span><span class='line'>cache_alignment  : 64
+</span><span class='line'>address sizes    : <span class="m">40</span> bits physical, <span class="m">48</span> bits virtual
+</span><span class='line'>power management:
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>UnixBench</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>./Run
+</span><span class='line'><span class="o">(</span>snip<span class="o">)</span>
+</span><span class='line'>------------------------------------------------------------------------
+</span><span class='line'>Benchmark Run: Wed Oct <span class="m">08</span> <span class="m">2014</span> 15:41:14 - 16:08:57
+</span><span class='line'><span class="m">1</span> CPU in system<span class="p">;</span> running <span class="m">1</span> parallel copy of tests
+</span><span class='line'>
+</span><span class='line'>Dhrystone <span class="m">2</span> using register variables       29081440.4 lps   <span class="o">(</span>10.0 s, <span class="m">7</span> samples<span class="o">)</span>
+</span><span class='line'>Double-Precision Whetstone                     3607.8 MWIPS <span class="o">(</span>8.2 s, <span class="m">7</span> samples<span class="o">)</span>
+</span><span class='line'>Execl Throughput                               3347.0 lps   <span class="o">(</span>30.0 s, <span class="m">2</span> samples<span class="o">)</span>
+</span><span class='line'>File Copy <span class="m">1024</span> bufsize <span class="m">2000</span> maxblocks        871848.0 KBps  <span class="o">(</span>30.0 s, <span class="m">2</span> samples<span class="o">)</span>
+</span><span class='line'>File Copy <span class="m">256</span> bufsize <span class="m">500</span> maxblocks          225866.5 KBps  <span class="o">(</span>30.0 s, <span class="m">2</span> samples<span class="o">)</span>
+</span><span class='line'>File Copy <span class="m">4096</span> bufsize <span class="m">8000</span> maxblocks       1427132.0 KBps  <span class="o">(</span>30.0 s, <span class="m">2</span> samples<span class="o">)</span>
+</span><span class='line'>Pipe Throughput                             1665126.8 lps   <span class="o">(</span>10.0 s, <span class="m">7</span> samples<span class="o">)</span>
+</span><span class='line'>Pipe-based Context Switching                 226668.9 lps   <span class="o">(</span>10.0 s, <span class="m">7</span> samples<span class="o">)</span>
+</span><span class='line'>Process Creation                               9210.5 lps   <span class="o">(</span>30.0 s, <span class="m">2</span> samples<span class="o">)</span>
+</span><span class='line'>Shell Scripts <span class="o">(</span><span class="m">1</span> concurrent<span class="o">)</span>                   4643.1 lpm   <span class="o">(</span>60.0 s, <span class="m">2</span> samples<span class="o">)</span>
+</span><span class='line'>Shell Scripts <span class="o">(</span><span class="m">8</span> concurrent<span class="o">)</span>                    619.2 lpm   <span class="o">(</span>60.1 s, <span class="m">2</span> samples<span class="o">)</span>
+</span><span class='line'>System Call Overhead                        2135413.1 lps   <span class="o">(</span>10.0 s, <span class="m">7</span> samples<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>System Benchmarks Index Values               BASELINE       RESULT    INDEX
+</span><span class='line'>Dhrystone <span class="m">2</span> using register variables         116700.0   29081440.4   2492.0
+</span><span class='line'>Double-Precision Whetstone                       55.0       3607.8    656.0
+</span><span class='line'>Execl Throughput                                 43.0       3347.0    778.4
+</span><span class='line'>File Copy <span class="m">1024</span> bufsize <span class="m">2000</span> maxblocks          3960.0     871848.0   2201.6
+</span><span class='line'>File Copy <span class="m">256</span> bufsize <span class="m">500</span> maxblocks            1655.0     225866.5   1364.8
+</span><span class='line'>File Copy <span class="m">4096</span> bufsize <span class="m">8000</span> maxblocks          5800.0    1427132.0   2460.6
+</span><span class='line'>Pipe Throughput                               12440.0    1665126.8   1338.5
+</span><span class='line'>Pipe-based Context Switching                   4000.0     226668.9    566.7
+</span><span class='line'>Process Creation                                126.0       9210.5    731.0
+</span><span class='line'>Shell Scripts <span class="o">(</span><span class="m">1</span> concurrent<span class="o">)</span>                     42.4       4643.1   1095.1
+</span><span class='line'>Shell Scripts <span class="o">(</span><span class="m">8</span> concurrent<span class="o">)</span>                      6.0        619.2   1031.9
+</span><span class='line'>System Call Overhead                          15000.0    2135413.1   1423.6
+</span><span class='line'>                                                                   <span class="o">========</span>
+</span><span class='line'>System Benchmarks Index Score                                        1193.9
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>hdparm</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo hdparm -Tt /dev/vda1
+</span><span class='line'>/dev/vda1:
+</span><span class='line'> Timing cached reads:   <span class="m">17478</span> MB in  2.00 <span class="nv">seconds</span> <span class="o">=</span> 8750.56 MB/sec
+</span><span class='line'> Timing buffered disk reads: <span class="m">2612</span> MB in  3.00 <span class="nv">seconds</span> <span class="o">=</span> 869.81 MB/sec
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Ping</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ping -c <span class="m">10</span> www.shironoo.org
+</span><span class='line'>PING www.shironoo.org <span class="o">(</span>128.199.136.12<span class="o">)</span>: <span class="m">56</span> data bytes
+</span><span class='line'><span class="m">64</span> bytes from 128.199.136.12: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">0</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">49</span> <span class="nb">time</span><span class="o">=</span>78.354 ms
+</span><span class='line'><span class="m">64</span> bytes from 128.199.136.12: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">49</span> <span class="nb">time</span><span class="o">=</span>77.436 ms
+</span><span class='line'><span class="o">(</span>snip<span class="o">)</span>
+</span><span class='line'><span class="m">64</span> bytes from 128.199.136.12: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">9</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">49</span> <span class="nb">time</span><span class="o">=</span>82.251 ms
+</span><span class='line'>
+</span><span class='line'>--- www.shironoo.org ping statistics ---
+</span><span class='line'><span class="m">10</span> packets transmitted, <span class="m">10</span> packets received, 0.0% packet loss
+</span><span class='line'>round-trip min/avg/max/stddev <span class="o">=</span> 77.436/78.479/82.251/1.337 ms
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>注意事項</h2>
+
+<p>IPv6でメール配送が上手くいかなくてつまづきました．<br/>
+調べたところ，IPv6のみOP25Bをやっているようです．<br/>
+<a href="https://www.digitalocean.com/community/questions/outgoing-smtp-over-ipv6-on-london-location">https://www.digitalocean.com/community/questions/outgoing-smtp-over-ipv6-on-london-location</a></p>
+
+<p>とりあえずPostfixのメール配送にIPv4を優先して用いるようにして対処しました．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>vi /etc/postfix/main.cf
+</span><span class='line'><span class="nv">smtp_address_preference</span> <span class="o">=</span> ipv4
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>まとめ</h2>
+
+<p>検証環境のためにちょっとサーバが欲しいんだけど・・・というときにぴったりのVPSです．<br/>
+APIも充実しているので，スクリプトとの親和性も高そう．<br/>
+日本から最寄りのリージョンはシンガポールなので，そこまでアクセス速度が問題になることもないかと．</p>
+
+<p>次のリンクから登録していただけると僕が喜びます．<br/>
+登録者も$10のボーナスが貰えるそうなので是非．<br/>
+<a href="https://www.digitalocean.com/?refcode=3e87155bd345">https://www.digitalocean.com/?refcode=3e87155bd345</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
     <a href="/blog/archives">Blog Archives</a>
@@ -77,6 +327,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/08/digitalocean/">自宅サーバからDigitalOceanのVPSへ引っ越した</a>
+      </li>
     
   </ul>
 </section>
@@ -99,6 +353,15 @@
   
 
 
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 
 
