@@ -4,7 +4,7 @@
   <title><![CDATA[shironoo's Memorandum]]></title>
   <link href="http://blog.shironoo.org/atom.xml" rel="self"/>
   <link href="http://blog.shironoo.org/"/>
-  <updated>2014-10-08T20:16:41+09:00</updated>
+  <updated>2014-10-08T21:12:23+09:00</updated>
   <id>http://blog.shironoo.org/</id>
   <author>
     <name><![CDATA[shironoo]]></name>
@@ -31,8 +31,12 @@
 </ul>
 
 
-<p>とまずまず．<br/>
-さくらVPSとAWSの中間のような機能を持っており，お手軽にIaaSを体感することができます．<br/>
+<p>とまずまず．</p>
+
+<!-- more -->
+
+
+<p>さくらVPSとAWSの中間のような機能を持っており，お手軽にIaaSを体感することができます．<br/>
 SSDのおかげで体感速度はなかなかのものです．</p>
 
 <h2>ベンチマーク</h2>
