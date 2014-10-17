@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>cliclickでターミナルからMacのマウスを制御 - shironoo&#8217;s Memorandum</title>
+  <title>FileVault2を用いてMacのディスク暗号化を行う - shironoo&#8217;s Memorandum</title>
   <meta name="author" content="shironoo">
 
   
-  <meta name="description" content="cliclickというプログラムを使ってMacでターミナルからマウス操作をしてみる．
-http://www.bluem.net/de/mac/cliclick/ 最近version 3になって使い方が変わっていたのでメモ． インストール Homebrewからインストール 1
-brew &hellip;">
+  <meta name="description" content="もうすぐセキュリティスペシャリストの試験があるということで，ボチボチ勉強しているわけなんですが，解答に「ハードディスクの暗号化」ってのがよく出てきます．
+MacにFileVault2ってのがあったことを思い出したので，有効にしてみました．
+WindowsのBitLockerに相当する機能ですね． &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +20,7 @@ brew &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.shironoo.org/blog/2014/10/11/control-mouse-on-mac">
+  <link rel="canonical" href="http://blog.shironoo.org/blog/2014/10/17/enable-filevault2-encryption">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="shironoo's Memorandum" type="application/atom+xml">
@@ -82,7 +82,7 @@ brew &hellip;">
   
   <header>
     
-      <h1 class="entry-title">cliclickでターミナルからMacのマウスを制御</h1>
+      <h1 class="entry-title">FileVault2を用いてMacのディスク暗号化を行う</h1>
     
     
       <p class="meta">
@@ -91,7 +91,7 @@ brew &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-10-11T17:14:41+09:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>5:14 pm</span></time>
+<time class='entry-date' datetime='2014-10-17T17:58:57+09:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>5:58 pm</span></time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.shironoo.org">Comments</a>
@@ -101,39 +101,72 @@ brew &hellip;">
   </header>
 
 
-<div class="entry-content"><p>cliclickというプログラムを使ってMacでターミナルからマウス操作をしてみる．
-<a href="http://www.bluem.net/de/mac/cliclick/">http://www.bluem.net/de/mac/cliclick/</a></p>
+<div class="entry-content"><p>もうすぐセキュリティスペシャリストの試験があるということで，ボチボチ勉強しているわけなんですが，解答に「ハードディスクの暗号化」ってのがよく出てきます．<br/>
+MacにFileVault2ってのがあったことを思い出したので，有効にしてみました．
+WindowsのBitLockerに相当する機能ですね．</p>
 
-<p>最近version 3になって使い方が変わっていたのでメモ．</p>
+<p>暗号化を行うにあたって，オーバーヘッドがどのくらいあるのか気になったので，ディスクのベンチマークも測ってみました．</p>
 
 <!-- more -->
 
 
-<h2>インストール</h2>
+<h2>FileVault2の有効化方法</h2>
 
-<p>Homebrewからインストール</p>
+<p>「システム環境設定」⇨「セキュリティとプライバシー」⇨「FileVault」 から有効にしましょう．</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install cliclick
-</span></code></pre></td></tr></table></div></figure>
+<p>ログインパスワードを忘れてしまった時であっても，iCloud経由で復旧キーをダウンロードしてデータを複合できるようです．<br/>
+逆に言えば，iCloudアカウントがクラックされてしまうとデータを複合されてしまいます．注意しましょう．</p>
 
+<h2>ベンチマーク</h2>
 
-<h2>使い方</h2>
+<p>ベンチマークにはbonnie-64を使用しました．<br/>
+<a href="https://code.google.com/p/bonnie-64/">https://code.google.com/p/bonnie-64/</a></p>
 
 <ul>
-<li>座標(x,y)をクリック<br/>
-<code>cliclick c:x,y</code></li>
-<li>座標(x,y)をダブルクリック<br/>
-<code>cliclick dc:x,y</code></li>
-<li>座標(a,b), (c,d), (e,f)の順に1秒間隔でクリック
-<code>cliclick -w 1000 c:a,b c:c,d c:e,f</code></li>
+<li>暗号化前</li>
 </ul>
 
 
-<p><code>-r</code>オプションをつけることで，操作後にマウスポインタの位置を元に戻すことができます．</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>          -------Sequential Output-------- ---Sequential Input-- --Random--
+</span><span class='line'>          -Per Char- --Block--- -Rewrite-- -Per Char- --Block--- --Seeks---
+</span><span class='line'>Machine       GB M/sec %CPU M/sec %CPU M/sec %CPU M/sec %CPU M/sec %CPU  /sec %CPU
+</span><span class='line'>Unencrypted    <span class="m">0</span>  14.6 97.9 705.7 54.7 703.9 42.0  15.0 99.2 4181.1 99.6 <span class="m">143281</span> 146.4
+</span></code></pre></td></tr></table></div></figure>
 
-<p>その他，詳しいことは<code>cliclick -h</code>を参照．<br/>
-キープレスのエミュレーションなどもできるようです．</p>
+
+<ul>
+<li>暗号化後</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>          -------Sequential Output-------- ---Sequential Input-- --Random--
+</span><span class='line'>          -Per Char- --Block--- -Rewrite-- -Per Char- --Block--- --Seeks---
+</span><span class='line'>Machine     GB M/sec %CPU M/sec %CPU M/sec %CPU M/sec %CPU M/sec %CPU  /sec %CPU
+</span><span class='line'>Encrypted    <span class="m">0</span>  15.8 97.7 640.8 50.8 702.6 44.0  15.3 95.8 5153.8 99.5 <span class="m">181241</span> 146.3
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一回測定しただけなので信憑性は疑問ですが，そんなに性能が劣化することはないようですね．</p>
+
+<p>暗号化後の方が性能が上がっている項目があるのはどういうことなんでしょう．<br/>
+アクセスが速くなることはないと思うので，これは測定誤差でしょうか．</p>
+
+<p>他のツールでも計測してみる予定でしたが，CLIで使える良さそうなディスクベンチが見つからなかったので断念しました．</p>
+
+<h2>おまけ</h2>
+
+<p>FileVault2で使われているXTS-AESという暗号化手法が興味深かったのでメモ．
+<a href="http://www.securevm.org/svms2-slides/svms2-omote.pdf">http://www.securevm.org/svms2-slides/svms2-omote.pdf</a></p>
+
+<p>ディスク暗号化にCBCモードを用いると安全でないというのは知らなかったです．</p>
 </div>
 
 
@@ -149,7 +182,7 @@ brew &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-10-11T17:14:41+09:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>5:14 pm</span></time>
+<time class='entry-date' datetime='2014-10-17T17:58:57+09:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>5:58 pm</span></time>
       
 
 <span class="categories">
@@ -163,7 +196,7 @@ brew &hellip;">
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.shironoo.org/blog/2014/10/11/control-mouse-on-mac/" data-via="shironoo" data-counturl="http://blog.shironoo.org/blog/2014/10/11/control-mouse-on-mac/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.shironoo.org/blog/2014/10/17/enable-filevault2-encryption/" data-via="shironoo" data-counturl="http://blog.shironoo.org/blog/2014/10/17/enable-filevault2-encryption/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -176,10 +209,8 @@ brew &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/10/08/digitalocean/" title="Previous Post: 自宅サーバからDigitalOceanのVPSへ引っ越した">&laquo; 自宅サーバからDigitalOceanのVPSへ引っ越した</a>
+        <a class="basic-alignment left" href="/blog/2014/10/11/control-mouse-on-mac/" title="Previous Post: cliclickでターミナルからMacのマウスを制御">&laquo; cliclickでターミナルからMacのマウスを制御</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/10/17/enable-filevault2-encryption/" title="Next Post: FileVault2を用いてMacのディスク暗号化を行う">FileVault2を用いてMacのディスク暗号化を行う &raquo;</a>
       
     </p>
   </footer>
@@ -243,8 +274,8 @@ brew &hellip;">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.shironoo.org/blog/2014/10/11/control-mouse-on-mac/';
-        var disqus_url = 'http://blog.shironoo.org/blog/2014/10/11/control-mouse-on-mac/';
+        var disqus_identifier = 'http://blog.shironoo.org/blog/2014/10/17/enable-filevault2-encryption/';
+        var disqus_url = 'http://blog.shironoo.org/blog/2014/10/17/enable-filevault2-encryption/';
         var disqus_script = 'embed.js';
       
     (function () {

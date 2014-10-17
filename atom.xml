@@ -4,7 +4,7 @@
   <title><![CDATA[shironoo's Memorandum]]></title>
   <link href="http://blog.shironoo.org/atom.xml" rel="self"/>
   <link href="http://blog.shironoo.org/"/>
-  <updated>2014-10-11T19:34:31+09:00</updated>
+  <updated>2014-10-17T18:51:39+09:00</updated>
   <id>http://blog.shironoo.org/</id>
   <author>
     <name><![CDATA[shironoo]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[FileVault2を用いてMacのディスク暗号化を行う]]></title>
+    <link href="http://blog.shironoo.org/blog/2014/10/17/enable-filevault2-encryption/"/>
+    <updated>2014-10-17T17:58:57+09:00</updated>
+    <id>http://blog.shironoo.org/blog/2014/10/17/enable-filevault2-encryption</id>
+    <content type="html"><![CDATA[<p>もうすぐセキュリティスペシャリストの試験があるということで，ボチボチ勉強しているわけなんですが，解答に「ハードディスクの暗号化」ってのがよく出てきます．<br/>
+MacにFileVault2ってのがあったことを思い出したので，有効にしてみました．
+WindowsのBitLockerに相当する機能ですね．</p>
+
+<p>暗号化を行うにあたって，オーバーヘッドがどのくらいあるのか気になったので，ディスクのベンチマークも測ってみました．</p>
+
+<!-- more -->
+
+
+<h2>FileVault2の有効化方法</h2>
+
+<p>「システム環境設定」⇨「セキュリティとプライバシー」⇨「FileVault」 から有効にしましょう．</p>
+
+<p>ログインパスワードを忘れてしまった時であっても，iCloud経由で復旧キーをダウンロードしてデータを複合できるようです．<br/>
+逆に言えば，iCloudアカウントがクラックされてしまうとデータを複合されてしまいます．注意しましょう．</p>
+
+<h2>ベンチマーク</h2>
+
+<p>ベンチマークにはbonnie-64を使用しました．<br/>
+<a href="https://code.google.com/p/bonnie-64/">https://code.google.com/p/bonnie-64/</a></p>
+
+<ul>
+<li>暗号化前</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>          -------Sequential Output-------- ---Sequential Input-- --Random--
+</span><span class='line'>          -Per Char- --Block--- -Rewrite-- -Per Char- --Block--- --Seeks---
+</span><span class='line'>Machine       GB M/sec %CPU M/sec %CPU M/sec %CPU M/sec %CPU M/sec %CPU  /sec %CPU
+</span><span class='line'>Unencrypted    <span class="m">0</span>  14.6 97.9 705.7 54.7 703.9 42.0  15.0 99.2 4181.1 99.6 <span class="m">143281</span> 146.4
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>暗号化後</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>          -------Sequential Output-------- ---Sequential Input-- --Random--
+</span><span class='line'>          -Per Char- --Block--- -Rewrite-- -Per Char- --Block--- --Seeks---
+</span><span class='line'>Machine     GB M/sec %CPU M/sec %CPU M/sec %CPU M/sec %CPU M/sec %CPU  /sec %CPU
+</span><span class='line'>Encrypted    <span class="m">0</span>  15.8 97.7 640.8 50.8 702.6 44.0  15.3 95.8 5153.8 99.5 <span class="m">181241</span> 146.3
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一回測定しただけなので信憑性は疑問ですが，そんなに性能が劣化することはないようですね．</p>
+
+<p>暗号化後の方が性能が上がっている項目があるのはどういうことなんでしょう．<br/>
+アクセスが速くなることはないと思うので，これは測定誤差でしょうか．</p>
+
+<p>他のツールでも計測してみる予定でしたが，CLIで使える良さそうなディスクベンチが見つからなかったので断念しました．</p>
+
+<h2>おまけ</h2>
+
+<p>FileVault2で使われているXTS-AESという暗号化手法が興味深かったのでメモ．
+<a href="http://www.securevm.org/svms2-slides/svms2-omote.pdf">http://www.securevm.org/svms2-slides/svms2-omote.pdf</a></p>
+
+<p>ディスク暗号化にCBCモードを用いると安全でないというのは知らなかったです．</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[cliclickでターミナルからMacのマウスを制御]]></title>
