@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Security | shironoo's Memorandum]]></title>
+  <link href="http://blog.shironoo.org/blog/categories/security/atom.xml" rel="self"/>
+  <link href="http://blog.shironoo.org/"/>
+  <updated>2014-10-20T12:42:17+09:00</updated>
+  <id>http://blog.shironoo.org/</id>
+  <author>
+    <name><![CDATA[shironoo]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[情報セキュリティスペシャリスト試験を受けた]]></title>
+    <link href="http://blog.shironoo.org/blog/2014/10/20/information-security-specialist-examination/"/>
+    <updated>2014-10-20T12:04:09+09:00</updated>
+    <id>http://blog.shironoo.org/blog/2014/10/20/information-security-specialist-examination</id>
+    <content type="html"><![CDATA[<p>IPAの情報セキュリティスペシャリスト試験を受けてきました．
+まだ結果は出てないので，簡単に所感を書き残しておきます．</p>
+
+<h3>午前I</h3>
+
+<p>免除</p>
+
+<h3>午前II</h3>
+
+<p>例年通りでした．</p>
+
+<h3>午後I</h3>
+
+<p>問1（BOFとスマートフォンセキュリティ）と問3（マルウェア感染への対策）を選択．<br/>
+問1は実際に手を動かしてBOFによるシェル奪取をやったことがあれば，楽に解ける問題でした．<br/>
+問3は過去問でも頻出のテーマであり，こちらも取り組みやすかったです．</p>
+
+<h3>午後II</h3>
+
+<p>問2（Webアプリのセキュリティ）を選択．<br/>
+DOM Based XSS，X-Frame-Options，HSTSなど，割と新しい話題が多かったのが印象的でした．<br/>
+Webセキュリティはあまり詳しくないので，不十分な解答になってしまった感は否めません．<br/>
+このあたりはIPAに多くの資料が掲載されているので，目を通しておくべきでしたね．</p>
+
+<h3>全体を通して</h3>
+
+<p>今回の試験を受けて感じたのは，昔の過去問によく見られたような，セキュリティ知識なしで解ける国語問題が少なくなったということです．<br/>
+過去問で「アンチウイルスソフトを更新する」「PCを肌身離さず持ち歩く」みたいな模範解答を見てきてうんざりしていたのですが，今回の試験で少し印象が変わりました．<br/>
+セキュリティは日進月歩の世界ですし，これからも新しいテーマを出題していってもらいたいです．</p>
+]]></content>
+  </entry>
+  
+</feed>

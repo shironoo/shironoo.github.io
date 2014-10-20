@@ -3,6 +3,14 @@
   
   
   <url>
+    <loc>http://blog.shironoo.org/blog/2014/10/20/information-security-specialist-examination/</loc>
+    
+    <lastmod>2014-10-20T12:04:09+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.shironoo.org/blog/2014/10/17/enable-filevault2-encryption/</loc>
     
     <lastmod>2014-10-17T17:58:57+09:00</lastmod>
@@ -29,14 +37,14 @@
   
   <url>
     <loc>http://blog.shironoo.org/blog/archives/</loc>
-    <lastmod>2014-10-17T18:51:39+09:00</lastmod>
+    <lastmod>2014-10-20T12:42:17+09:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://blog.shironoo.org/</loc>
-    <lastmod>2014-10-17T18:51:39+09:00</lastmod>
+    <lastmod>2014-10-20T12:42:17+09:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
