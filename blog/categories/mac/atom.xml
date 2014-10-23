@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Mac | shironoo's Memorandum]]></title>
+  <title><![CDATA[Category: Mac, | shironoo's Memorandum]]></title>
   <link href="http://blog.shironoo.org/blog/categories/mac/atom.xml" rel="self"/>
   <link href="http://blog.shironoo.org/"/>
-  <updated>2014-10-20T12:42:17+09:00</updated>
+  <updated>2014-10-23T18:33:48+09:00</updated>
   <id>http://blog.shironoo.org/</id>
   <author>
     <name><![CDATA[shironoo]]></name>
@@ -70,45 +70,6 @@ Encrypted    0  15.8 97.7 640.8 50.8 702.6 44.0  15.3 95.8 5153.8 99.5 181241 14
 <a href="http://www.securevm.org/svms2-slides/svms2-omote.pdf">http://www.securevm.org/svms2-slides/svms2-omote.pdf</a></p>
 
 <p>ディスク暗号化にCBCモードを用いると安全でないというのは知らなかったです．</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[cliclickでターミナルからMacのマウスを制御]]></title>
-    <link href="http://blog.shironoo.org/blog/2014/10/11/control-mouse-on-mac/"/>
-    <updated>2014-10-11T17:14:41+09:00</updated>
-    <id>http://blog.shironoo.org/blog/2014/10/11/control-mouse-on-mac</id>
-    <content type="html"><![CDATA[<p>cliclickというプログラムを使ってMacでターミナルからマウス操作をしてみる．
-<a href="http://www.bluem.net/de/mac/cliclick/">http://www.bluem.net/de/mac/cliclick/</a></p>
-
-<p>最近version 3になって使い方が変わっていたのでメモ．</p>
-
-<!-- more -->
-
-
-<h2>インストール</h2>
-
-<p>Homebrewからインストール
-<code>bash
-brew install cliclick
-</code></p>
-
-<h2>使い方</h2>
-
-<ul>
-<li>座標(x,y)をクリック<br/>
-<code>cliclick c:x,y</code></li>
-<li>座標(x,y)をダブルクリック<br/>
-<code>cliclick dc:x,y</code></li>
-<li>座標(a,b), (c,d), (e,f)の順に1秒間隔でクリック
-<code>cliclick -w 1000 c:a,b c:c,d c:e,f</code></li>
-</ul>
-
-
-<p><code>-r</code>オプションをつけることで，操作後にマウスポインタの位置を元に戻すことができます．</p>
-
-<p>その他，詳しいことは<code>cliclick -h</code>を参照．<br/>
-キープレスのエミュレーションなどもできるようです．</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Security | shironoo's Memorandum]]></title>
   <link href="http://blog.shironoo.org/blog/categories/security/atom.xml" rel="self"/>
   <link href="http://blog.shironoo.org/"/>
-  <updated>2014-10-20T12:42:17+09:00</updated>
+  <updated>2014-10-23T18:33:48+09:00</updated>
   <id>http://blog.shironoo.org/</id>
   <author>
     <name><![CDATA[shironoo]]></name>
@@ -18,8 +18,11 @@
     <link href="http://blog.shironoo.org/blog/2014/10/20/information-security-specialist-examination/"/>
     <updated>2014-10-20T12:04:09+09:00</updated>
     <id>http://blog.shironoo.org/blog/2014/10/20/information-security-specialist-examination</id>
-    <content type="html"><![CDATA[<p>IPAの情報セキュリティスペシャリスト試験を受けてきました．
+    <content type="html"><![CDATA[<p>IPAの情報セキュリティスペシャリスト試験を受けてきました．<br/>
 まだ結果は出てないので，簡単に所感を書き残しておきます．</p>
+
+<!-- more -->
+
 
 <h3>午前I</h3>
 
@@ -47,6 +50,66 @@ Webセキュリティはあまり詳しくないので，不十分な解答に�
 <p>今回の試験を受けて感じたのは，昔の過去問によく見られたような，セキュリティ知識なしで解ける国語問題が少なくなったということです．<br/>
 過去問で「アンチウイルスソフトを更新する」「PCを肌身離さず持ち歩く」みたいな模範解答を見てきてうんざりしていたのですが，今回の試験で少し印象が変わりました．<br/>
 セキュリティは日進月歩の世界ですし，これからも新しいテーマを出題していってもらいたいです．</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FileVault2を用いてMacのディスク暗号化を行う]]></title>
+    <link href="http://blog.shironoo.org/blog/2014/10/17/enable-filevault2-encryption/"/>
+    <updated>2014-10-17T17:58:57+09:00</updated>
+    <id>http://blog.shironoo.org/blog/2014/10/17/enable-filevault2-encryption</id>
+    <content type="html"><![CDATA[<p>もうすぐセキュリティスペシャリストの試験があるということで，ボチボチ勉強しているわけなんですが，解答に「ハードディスクの暗号化」ってのがよく出てきます．<br/>
+MacにFileVault2ってのがあったことを思い出したので，有効にしてみました．
+WindowsのBitLockerに相当する機能ですね．</p>
+
+<p>暗号化を行うにあたって，オーバーヘッドがどのくらいあるのか気になったので，ディスクのベンチマークも測ってみました．</p>
+
+<!-- more -->
+
+
+<h2>FileVault2の有効化方法</h2>
+
+<p>「システム環境設定」⇨「セキュリティとプライバシー」⇨「FileVault」 から有効にしましょう．</p>
+
+<p>ログインパスワードを忘れてしまった時であっても，iCloud経由で復旧キーをダウンロードしてデータを複合できるようです．<br/>
+逆に言えば，iCloudアカウントがクラックされてしまうとデータを複合されてしまいます．注意しましょう．</p>
+
+<h2>ベンチマーク</h2>
+
+<p>ベンチマークにはbonnie-64を使用しました．<br/>
+<a href="https://code.google.com/p/bonnie-64/">https://code.google.com/p/bonnie-64/</a></p>
+
+<ul>
+<li><p>暗号化前
+<code>bash
+            -------Sequential Output-------- ---Sequential Input-- --Random--
+            -Per Char- --Block--- -Rewrite-- -Per Char- --Block--- --Seeks---
+Machine       GB M/sec %CPU M/sec %CPU M/sec %CPU M/sec %CPU M/sec %CPU  /sec %CPU
+Unencrypted    0  14.6 97.9 705.7 54.7 703.9 42.0  15.0 99.2 4181.1 99.6 143281 146.4
+</code></p></li>
+<li><p>暗号化後
+<code>bash
+            -------Sequential Output-------- ---Sequential Input-- --Random--
+            -Per Char- --Block--- -Rewrite-- -Per Char- --Block--- --Seeks---
+Machine     GB M/sec %CPU M/sec %CPU M/sec %CPU M/sec %CPU M/sec %CPU  /sec %CPU
+Encrypted    0  15.8 97.7 640.8 50.8 702.6 44.0  15.3 95.8 5153.8 99.5 181241 146.3
+</code></p></li>
+</ul>
+
+
+<p>一回測定しただけなので信憑性は疑問ですが，そんなに性能が劣化することはないようですね．</p>
+
+<p>暗号化後の方が性能が上がっている項目があるのはどういうことなんでしょう．<br/>
+アクセスが速くなることはないと思うので，これは測定誤差でしょうか．</p>
+
+<p>他のツールでも計測してみる予定でしたが，CLIで使える良さそうなディスクベンチが見つからなかったので断念しました．</p>
+
+<h2>おまけ</h2>
+
+<p>FileVault2で使われているXTS-AESという暗号化手法が興味深かったのでメモ．
+<a href="http://www.securevm.org/svms2-slides/svms2-omote.pdf">http://www.securevm.org/svms2-slides/svms2-omote.pdf</a></p>
+
+<p>ディスク暗号化にCBCモードを用いると安全でないというのは知らなかったです．</p>
 ]]></content>
   </entry>
   
