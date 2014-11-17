@@ -3,6 +3,14 @@
   
   
   <url>
+    <loc>http://blog.shironoo.org/blog/2014/11/17/acpi-wakeup/</loc>
+    
+    <lastmod>2014-11-17T14:24:33+09:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.shironoo.org/blog/2014/10/20/information-security-specialist-examination/</loc>
     
     <lastmod>2014-10-20T12:04:09+09:00</lastmod>
@@ -37,14 +45,14 @@
   
   <url>
     <loc>http://blog.shironoo.org/blog/archives/</loc>
-    <lastmod>2014-10-23T18:33:48+09:00</lastmod>
+    <lastmod>2014-11-17T19:02:02+09:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://blog.shironoo.org/</loc>
-    <lastmod>2014-10-23T18:33:48+09:00</lastmod>
+    <lastmod>2014-11-17T19:02:02+09:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

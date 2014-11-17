@@ -4,7 +4,7 @@
   <title><![CDATA[shironoo's Memorandum]]></title>
   <link href="http://blog.shironoo.org/atom.xml" rel="self"/>
   <link href="http://blog.shironoo.org/"/>
-  <updated>2014-10-23T18:33:48+09:00</updated>
+  <updated>2014-11-17T19:02:02+09:00</updated>
   <id>http://blog.shironoo.org/</id>
   <author>
     <name><![CDATA[shironoo]]></name>
@@ -12,6 +12,107 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Linuxマシンを指定時刻に自動起動/停止させる]]></title>
+    <link href="http://blog.shironoo.org/blog/2014/11/17/acpi-wakeup/"/>
+    <updated>2014-11-17T14:24:33+09:00</updated>
+    <id>http://blog.shironoo.org/blog/2014/11/17/acpi-wakeup</id>
+    <content type="html"><![CDATA[<h3>自動起動</h3>
+
+<p>ACPI Wakeupを使えば，電源オフ（S5）状態からでも自動で電源を入れることができます．
+使い方は簡単で，<code>/sys/class/rtc/rtc0/wakealarm</code>に起動したい時刻(UNIX time) を書き込むだけです．</p>
+
+<p>例えば，2014/11/22 18:30 に起動する場合は次のようになります．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>date --date <span class="s2">&quot;2014-11-22 18:30:00&quot;</span> +%s &gt; /sys/class/rtc/rtc0/wakealarm
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>こうした上でシャットダウンします．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>shutdown -h now
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>指定時刻に無事起動すれば成功です．
+うまくいかない場合は<code>pm-utils</code>を入れて，<code>shutdown</code>の代わりに<code>pm-hibernate</code>を使うといいかもしれません．</p>
+
+<h3>自動停止</h3>
+
+<p><code>shutdown</code>コマンドを用います．</p>
+
+<ul>
+<li>60分後に停止</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>shutdown -h +60
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>23:00に停止</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>shutdown -h 23:00
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>2014/11/22 18:30に停止</li>
+</ul>
+
+
+<p>停止日が日をまたぐ場合，<code>at</code>を用いるのがお薦めです．
+（日付のフォーマットは[日.月.年]なので注意）</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>at 18:30 22.11.2014
+</span><span class='line'>at&gt; shutdown -h now
+</span><span class='line'>at&gt; &lt;EOT&gt;     <span class="c"># press Ctrl-D</span>
+</span><span class='line'>job <span class="m">1</span> at Sat Nov <span class="m">22</span> 18:30:00 2014
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで停止設定が出来ました．</p>
+
+<p>ジョブの確認には<code>atq</code>コマンドを用います．
+コマンド内容まで知りたい場合には<code>at -c ジョブ番号</code>を用います．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>atq
+</span><span class='line'><span class="m">1</span>       Sat Nov <span class="m">22</span> 18:30:00 <span class="m">2014</span> a hirono
+</span><span class='line'><span class="nv">$ </span>at -c 1
+</span><span class='line'><span class="o">(</span>snip<span class="o">)</span>
+</span><span class='line'>shutdown -h now
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ジョブの削除には<code>atrm</code>を用います．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>atrm 1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>参考</h3>
+
+<p><a href="https://www.mythtv.org/wiki/ACPI_Wakeup">https://www.mythtv.org/wiki/ACPI_Wakeup</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[情報セキュリティスペシャリスト試験を受けた]]></title>
