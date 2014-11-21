@@ -9,8 +9,8 @@
   <meta name="author" content="shironoo">
 
   
-  <meta name="description" content="自動起動 ACPI Wakeupを使えば，電源オフ（S5）状態からでも自動で電源を入れることができます．
-使い方は簡単で，/sys/class/rtc/rtc0/wakealarmに起動したい時刻(UNIX time) を書き込むだけです． 例えば，2014/11/22 18:30 &hellip;">
+  <meta name="description" content="ownCloud 7.0.3のテキストエディタで，Shift JISの文書を開くと文字化けしてしまいます．
+不便なのでソースを修正しました． owncloud/apps/files_texteditor/ajax/loadfile.php内のmb_detect_encoding関数の引数に" &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,70 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/21/owncloud-texteditor-sjis/">ownCloud テキストエディタのShift JIS 文字化け対策</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-21T15:14:00+09:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>3:14 pm</span></time>
+        
+           | <a href="/blog/2014/11/21/owncloud-texteditor-sjis/#disqus_thread"
+             data-disqus-identifier="http://blog.shironoo.org/blog/2014/11/21/owncloud-texteditor-sjis/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ownCloud 7.0.3のテキストエディタで，Shift JISの文書を開くと文字化けしてしまいます．
+不便なのでソースを修正しました．</p>
+
+<p><code>owncloud/apps/files_texteditor/ajax/loadfile.php</code>内のmb_detect_encoding関数の引数に&#8221;SJIS-win&#8221;を追加します．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="err">$</span> <span class="nx">diff</span> <span class="o">-</span><span class="nx">u</span> <span class="nx">owncloud</span><span class="o">/</span><span class="nx">apps</span><span class="o">/</span><span class="nx">files_texteditor</span><span class="o">/</span><span class="nx">ajax</span><span class="o">/</span><span class="nx">loadfile</span><span class="o">.</span><span class="nx">php</span><span class="p">{</span><span class="o">.</span><span class="nx">bak</span><span class="p">,}</span>
+</span><span class='line'><span class="o">---</span> <span class="nx">owncloud</span><span class="o">/</span><span class="nx">apps</span><span class="o">/</span><span class="nx">files_texteditor</span><span class="o">/</span><span class="nx">ajax</span><span class="o">/</span><span class="nx">loadfile</span><span class="o">.</span><span class="nx">php</span><span class="o">.</span><span class="nx">bak</span>        <span class="mi">2014</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">14</span><span class="o">:</span><span class="mi">20</span><span class="o">:</span><span class="mf">07.822817159</span> <span class="o">+</span><span class="mi">0900</span>
+</span><span class='line'><span class="o">+++</span> <span class="nx">owncloud</span><span class="o">/</span><span class="nx">apps</span><span class="o">/</span><span class="nx">files_texteditor</span><span class="o">/</span><span class="nx">ajax</span><span class="o">/</span><span class="nx">loadfile</span><span class="o">.</span><span class="nx">php</span>    <span class="mi">2014</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">14</span><span class="o">:</span><span class="mi">10</span><span class="o">:</span><span class="mf">17.844434118</span> <span class="o">+</span><span class="mi">0900</span>
+</span><span class='line'><span class="o">@@</span> <span class="o">-</span><span class="mi">37</span><span class="p">,</span><span class="mi">7</span> <span class="o">+</span><span class="mi">37</span><span class="p">,</span><span class="mi">7</span> <span class="o">@@</span>
+</span><span class='line'>        <span class="nv">$mime</span> <span class="o">=</span> <span class="nx">\OC\Files\Filesystem</span><span class="o">::</span><span class="na">getMimeType</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+</span><span class='line'>        <span class="nv">$mtime</span> <span class="o">=</span> <span class="nx">\OC\Files\Filesystem</span><span class="o">::</span><span class="na">filemtime</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+</span><span class='line'>        <span class="nv">$filecontents</span> <span class="o">=</span> <span class="nx">\OC\Files\Filesystem</span><span class="o">::</span><span class="na">file_get_contents</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+</span><span class='line'><span class="o">-</span>       <span class="nv">$encoding</span> <span class="o">=</span> <span class="nb">mb_detect_encoding</span><span class="p">(</span><span class="nv">$filecontents</span><span class="o">.</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;UTF-8, WINDOWS-1252, ISO-8859-15, ISO-8859-1, ASCII&quot;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span><span class='line'><span class="o">+</span>       <span class="nv">$encoding</span> <span class="o">=</span> <span class="nb">mb_detect_encoding</span><span class="p">(</span><span class="nv">$filecontents</span><span class="o">.</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;SJIS-win, UTF-8, WINDOWS-1252, ISO-8859-15, ISO-8859-1, ASCII&quot;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nv">$encoding</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="c1">// set default encoding if it couldn&#39;t be detected</span>
+</span><span class='line'>                <span class="nv">$encoding</span> <span class="o">=</span> <span class="s1">&#39;ISO-8859-15&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これでテキストエディタからShift JISが扱えるようになりました．</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -385,6 +449,10 @@ WindowsのBitLockerに相当する機能ですね．</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/11/21/owncloud-texteditor-sjis/">ownCloud テキストエディタのShift JIS 文字化け対策</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/11/17/acpi-wakeup/">Linuxマシンを指定時刻に自動起動/停止させる</a>
       </li>
     
@@ -400,15 +468,11 @@ WindowsのBitLockerに相当する機能ですね．</p>
         <a href="/blog/2014/10/11/control-mouse-on-mac/">cliclickでターミナルからMacのマウスを制御</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/10/08/digitalocean/">自宅サーバからDigitalOceanのVPSへ引っ越した</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/ipa/'>ipa, (1)</a></li><li><a href='/blog/categories/linux/'>linux (1)</a></li><li><a href='/blog/categories/mac/'>mac (1)</a></li><li><a href='/blog/categories/mac/'>mac, (1)</a></li><li><a href='/blog/categories/security/'>security (2)</a></li><li><a href='/blog/categories/vps/'>vps (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/ipa/'>ipa (1)</a></li><li><a href='/blog/categories/linux/'>linux (1)</a></li><li><a href='/blog/categories/mac/'>mac (2)</a></li><li><a href='/blog/categories/owncloud/'>owncloud (1)</a></li><li><a href='/blog/categories/security/'>security (2)</a></li><li><a href='/blog/categories/vps/'>vps (1)</a></li></ul>
 </section>
 <section>
  <h1>Twitter</h1>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Owncloud | shironoo's Memorandum]]></title>
+  <link href="http://blog.shironoo.org/blog/categories/owncloud/atom.xml" rel="self"/>
+  <link href="http://blog.shironoo.org/"/>
+  <updated>2014-11-21T15:55:49+09:00</updated>
+  <id>http://blog.shironoo.org/</id>
+  <author>
+    <name><![CDATA[shironoo]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ownCloud テキストエディタのShift JIS 文字化け対策]]></title>
+    <link href="http://blog.shironoo.org/blog/2014/11/21/owncloud-texteditor-sjis/"/>
+    <updated>2014-11-21T15:14:00+09:00</updated>
+    <id>http://blog.shironoo.org/blog/2014/11/21/owncloud-texteditor-sjis</id>
+    <content type="html"><![CDATA[<p>ownCloud 7.0.3のテキストエディタで，Shift JISの文書を開くと文字化けしてしまいます．
+不便なのでソースを修正しました．</p>
+
+<p><code>owncloud/apps/files_texteditor/ajax/loadfile.php</code>内のmb_detect_encoding関数の引数に&#8221;SJIS-win&#8221;を追加します．
+<code>php
+$ diff -u owncloud/apps/files_texteditor/ajax/loadfile.php{.bak,}
+--- owncloud/apps/files_texteditor/ajax/loadfile.php.bak        2014-11-21 14:20:07.822817159 +0900
++++ owncloud/apps/files_texteditor/ajax/loadfile.php    2014-11-21 14:10:17.844434118 +0900
+@@ -37,7 +37,7 @@
+        $mime = \OC\Files\Filesystem::getMimeType($path);
+        $mtime = \OC\Files\Filesystem::filemtime($path);
+        $filecontents = \OC\Files\Filesystem::file_get_contents($path);
+-       $encoding = mb_detect_encoding($filecontents."a", "UTF-8, WINDOWS-1252, ISO-8859-15, ISO-8859-1, ASCII", true);
++       $encoding = mb_detect_encoding($filecontents."a", "SJIS-win, UTF-8, WINDOWS-1252, ISO-8859-15, ISO-8859-1, ASCII", true);
+        if ($encoding == "") {
+                // set default encoding if it couldn't be detected
+                $encoding = 'ISO-8859-15';
+</code>
+これでテキストエディタからShift JISが扱えるようになりました．</p>
+]]></content>
+  </entry>
+  
+</feed>
