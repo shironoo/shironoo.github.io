@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Linuxマシンを指定時刻に自動起動/停止させる - shironoo&#8217;s Memorandum</title>
+  <title>情報セキュリティスペシャリスト試験に合格した - shironoo&#8217;s Memorandum</title>
   <meta name="author" content="shironoo">
 
   
-  <meta name="description" content="自動起動 ACPI Wakeupを使えば，電源オフ（S5）状態からでも自動で電源を入れることができます．
-使い方は簡単で，/sys/class/rtc/rtc0/wakealarmに起動したい時刻(UNIX time) を書き込むだけです． 例えば，2014/11/22 18:30 &hellip;">
+  <meta name="description" content="晴れて情報セキュリティスペシャリストになりました． 試験対策 本格的に試験対策を始めたのは一ヶ月前くらいでしょうか．
+とりあえず本を2冊買いました． 情報処理教科書で出題範囲を網羅し，ポケットスタディで解答のコツをつかむようにしました．
+まじめに解答を考えすぎてしまい， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.shironoo.org/blog/2014/11/17/acpi-wakeup">
+  <link rel="canonical" href="http://blog.shironoo.org/blog/2014/12/21/passing-information-security-specialist-examination">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="shironoo's Memorandum" type="application/atom+xml">
@@ -81,7 +82,7 @@
   
   <header>
     
-      <h1 class="entry-title">Linuxマシンを指定時刻に自動起動/停止させる</h1>
+      <h1 class="entry-title">情報セキュリティスペシャリスト試験に合格した</h1>
     
     
       <p class="meta">
@@ -90,7 +91,7 @@
 
 
 
-<time class='entry-date' datetime='2014-11-17T14:24:33+09:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:24 pm</span></time>
+<time class='entry-date' datetime='2014-12-21T14:39:01+09:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>2:39 pm</span></time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.shironoo.org">Comments</a>
@@ -100,99 +101,49 @@
   </header>
 
 
-<div class="entry-content"><h3>自動起動</h3>
+<div class="entry-content"><p>晴れて情報セキュリティスペシャリストになりました．
+<img src="https://pbs.twimg.com/media/B5MN_qNCQAAu5uu.png"></p>
 
-<p>ACPI Wakeupを使えば，電源オフ（S5）状態からでも自動で電源を入れることができます．
-使い方は簡単で，<code>/sys/class/rtc/rtc0/wakealarm</code>に起動したい時刻(UNIX time) を書き込むだけです．</p>
+<h3>試験対策</h3>
 
-<p>例えば，2014/11/22 18:30 に起動する場合は次のようになります．</p>
+<p>本格的に試験対策を始めたのは一ヶ月前くらいでしょうか．
+とりあえず本を2冊買いました．</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>date --date <span class="s2">&quot;2014-11-22 18:30:00&quot;</span> +%s &gt; /sys/class/rtc/rtc0/wakealarm
-</span></code></pre></td></tr></table></div></figure>
+<p><a href="http://www.amazon.co.jp/gp/product/4798138509/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798138509&linkCode=as2&tag=shironoo-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4798138509&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=shironoo-22" ></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=shironoo-22&l=as2&o=9&a=4798138509" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="http://www.amazon.co.jp/gp/product/4798040266/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4798040266&linkCode=as2&tag=shironoo-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4798040266&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=shironoo-22" ></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=shironoo-22&l=as2&o=9&a=4798040266" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></p>
 
+<p>情報処理教科書で出題範囲を網羅し，ポケットスタディで解答のコツをつかむようにしました．
+まじめに解答を考えすぎてしまい，文字数オーバーに悩まされていた僕にとって，ポケットスタディは素晴らしい本でした．オススメです．</p>
 
-<p>こうした上でシャットダウンします．</p>
+<p>あとは内定先から送られてきた過去問集をやりました．
+解答が丁寧なのはありがたかったです．</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>shutdown -h now
-</span></code></pre></td></tr></table></div></figure>
+<p><a href="http://www.amazon.co.jp/gp/product/4813257623/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4813257623&linkCode=as2&tag=shironoo-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4813257623&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=shironoo-22" ></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=shironoo-22&l=as2&o=9&a=4813257623" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></p>
 
+<p>IPAのホームページで公開されている過去問も印刷はしたものの，時間がなくてほとんど手をつけられませんでした．
+もう少し過去問ベースで学習を進めてもよかったかなと思っています．</p>
 
-<p>指定時刻に無事起動すれば成功です．
-うまくいかない場合は<code>pm-utils</code>を入れて，<code>shutdown</code>の代わりに<code>pm-hibernate</code>を使うといいかもしれません．</p>
+<h3>推薦図書</h3>
 
-<h3>自動停止</h3>
+<p>試験対策として読んだわけではないですが，結果的に役立った本をご紹介．</p>
 
-<p><code>shutdown</code>コマンドを用います．</p>
+<p><a href="http://www.amazon.co.jp/gp/product/4797361190/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4797361190&linkCode=as2&tag=shironoo-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4797361190&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=shironoo-22" ></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=shironoo-22&l=as2&o=9&a=4797361190" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></p>
 
-<ul>
-<li>60分後に停止</li>
-</ul>
+<p>安全なWebアプリケーションの作り方，通称徳丸本．Webセキュリティでこれだけまとまった本はないでしょう．
+文句なしにオススメです．</p>
 
+<p><a href="http://www.amazon.co.jp/gp/product/4873115140/ref=as_li_qf_sp_asin_il?ie=UTF8&camp=247&creative=1211&creativeASIN=4873115140&linkCode=as2&tag=shironoo-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4873115140&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=shironoo-22" ></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=shironoo-22&l=as2&o=9&a=4873115140" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>shutdown -h +60
-</span></code></pre></td></tr></table></div></figure>
+<p>バッファオーバーフロー脆弱性を用いてシェルコードを実行してみようという本．
+GDBを使ってプログラムを解析し，エクスプロイトコードを書き，シェルが奪取できたときの感動はたまりません．
+アセンブリやメモリの使われ方に関する説明もあるので，基本的な内容を復習しつつ読み進められます．</p>
 
+<h3>最後に</h3>
 
-<ul>
-<li>23:00に停止</li>
-</ul>
+<p>採点は思ったより甘いみたいです．（厳しめに自己採点した結果から+20点くらいな感じ）
+わからなくても，とりあえず回答欄は埋めるようにした方がいいです．</p>
 
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>shutdown -h 23:00
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>2014/11/22 18:30に停止</li>
-</ul>
-
-
-<p>停止日が日をまたぐ場合，<code>at</code>を用いるのがお薦めです．
-（日付のフォーマットは[日.月.年]なので注意）</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>at 18:30 22.11.2014
-</span><span class='line'>at&gt; shutdown -h now
-</span><span class='line'>at&gt; &lt;EOT&gt;     <span class="c"># press Ctrl-D</span>
-</span><span class='line'>job <span class="m">1</span> at Sat Nov <span class="m">22</span> 18:30:00 2014
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>これで停止設定が出来ました．</p>
-
-<p>ジョブの確認には<code>atq</code>コマンドを用います．
-コマンド内容まで知りたい場合には<code>at -c ジョブ番号</code>を用います．</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>atq
-</span><span class='line'><span class="m">1</span>       Sat Nov <span class="m">22</span> 18:30:00 <span class="m">2014</span> a hirono
-</span><span class='line'><span class="nv">$ </span>at -c 1
-</span><span class='line'><span class="o">(</span>snip<span class="o">)</span>
-</span><span class='line'>shutdown -h now
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ジョブの削除には<code>atrm</code>を用います．</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>atrm 1
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>参考</h3>
-
-<p><a href="https://www.mythtv.org/wiki/ACPI_Wakeup">https://www.mythtv.org/wiki/ACPI_Wakeup</a></p>
+<p>次はネットワークスペシャリスト受けたいとこですが，秋のみのようなので，データベーススペシャリスト受けるか迷い中です・・・</p>
 </div>
 
 
@@ -208,12 +159,12 @@
 
 
 
-<time class='entry-date' datetime='2014-11-17T14:24:33+09:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:24 pm</span></time>
+<time class='entry-date' datetime='2014-12-21T14:39:01+09:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>2:39 pm</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/linux/'>linux</a>
+    <a class='category' href='/blog/categories/ipa/'>ipa</a>, <a class='category' href='/blog/categories/security/'>security</a>
   
 </span>
 
@@ -222,7 +173,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.shironoo.org/blog/2014/11/17/acpi-wakeup/" data-via="shironoo" data-counturl="http://blog.shironoo.org/blog/2014/11/17/acpi-wakeup/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.shironoo.org/blog/2014/12/21/passing-information-security-specialist-examination/" data-via="shironoo" data-counturl="http://blog.shironoo.org/blog/2014/12/21/passing-information-security-specialist-examination/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -235,10 +186,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/10/20/information-security-specialist-examination/" title="Previous Post: 情報セキュリティスペシャリスト試験を受けた">&laquo; 情報セキュリティスペシャリスト試験を受けた</a>
+        <a class="basic-alignment left" href="/blog/2014/11/21/owncloud-texteditor-sjis/" title="Previous Post: ownCloud テキストエディタのShift JIS 文字化け対策">&laquo; ownCloud テキストエディタのShift JIS 文字化け対策</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/11/21/owncloud-texteditor-sjis/" title="Next Post: ownCloud テキストエディタのShift JIS 文字化け対策">ownCloud テキストエディタのShift JIS 文字化け対策 &raquo;</a>
       
     </p>
   </footer>
@@ -310,8 +259,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.shironoo.org/blog/2014/11/17/acpi-wakeup/';
-        var disqus_url = 'http://blog.shironoo.org/blog/2014/11/17/acpi-wakeup/';
+        var disqus_identifier = 'http://blog.shironoo.org/blog/2014/12/21/passing-information-security-specialist-examination/';
+        var disqus_url = 'http://blog.shironoo.org/blog/2014/12/21/passing-information-security-specialist-examination/';
         var disqus_script = 'embed.js';
       
     (function () {
